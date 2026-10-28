@@ -8,7 +8,7 @@ Locksmith brings together Rogue Pick Lock, Blacksmithing Skeleton Keys, and Engi
 
 **No required dependencies.  No action-bar slot needed for Locksmith's controls.**
 
-**Only active for rogues, engineers, or blacksmiths.**  Other characters load only a lightweight eligibility check; the unlocking features and minimap button stay inactive.
+**For Rogues and non-Rogue Blacksmiths/Engineers.**  Other characters load only a lightweight eligibility check; the unlocking features and minimap button stay inactive.
 
 ## Download
 
@@ -21,7 +21,7 @@ Hold **Alt** and left-click or right-click a supported locked item.  Choose **Sh
 - Rogues use **Pick Lock** when their detected skill meets the lock's requirement.
 - Otherwise, Locksmith selects the **weakest suitable usable key or charge** from carried bags and the Blizzard Keyring.
 - Rogues with trained Pick Lock but insufficient skill receive a confirmation before using a consumable.
-- A highlight and small method icon show the selected action.  The tooltip identifies the spell or item, including the available item quantity.
+- Hold your configured modifier (**Alt** by default) to see the unlocking method and item count, if applicable, in the tooltip. A highlight and small method icon also show the selected action.
 - Missing or unreadable requirements do not trigger a guessed consumable choice.
 - Normal bag clicks keep their usual behavior.  The shortcut is disabled in combat, at vendors, and at the Auction House.
 
@@ -31,7 +31,7 @@ Hold **Alt** and left-click or right-click a supported locked item.  Choose **Sh
 
 **Right-click the object normally first.**  Rogues with sufficient skill can use the game's native world-object lockpicking.  Named dungeon and quest keys also keep their normal behavior.
 
-If the game reports a recognized locked error, Locksmith opens a compact window containing your **usable Skeleton Keys and Seaforium Charges**.  Select an item, then click the object.  With no usable consumables available, it displays **“No charges or keys available”** instead of opening an empty window.
+For Rogues with insufficient skill and non-Rogue Blacksmiths/Engineers, Locksmith opens a compact window containing your **usable Skeleton Keys and Seaforium Charges** when the game reports a recognized locked error.  Select an item, then click the object.  With no usable consumables available, it displays **“No charges or keys available”** instead of opening an empty window.
 
 World-object skill requirements are not reliably exposed to the addon.  The popup lists available usable consumables; **you choose one strong enough for the lock**.  A special named key may still be required.  Objects or servers that do not send a recognized error may require opening the window manually with `/ls` or the minimap button.
 
@@ -43,7 +43,7 @@ The window closes when the client reports a successful cast of the selected unlo
 
 **Rogues who have learned Pick Lock** can right-click a locked box in the other player's **“Will not be traded”** slot.  Locksmith opens a **Pick Lock-only** window.  Select the spell, click the box, and complete the trade as prompted.
 
-Skeleton Keys and Seaforium Charges are excluded from this popup.  In testing, the game rejected both on trade-slot items with **“Item cannot be enchanted in trade.”**  Non-rogues do not receive a trade popup.
+**Skeleton Keys and Seaforium Charges do not work in the trade window** and are excluded from this popup.  In testing, the game rejected both on trade-slot items with **“Item cannot be enchanted in trade.”**  Non-rogues do not receive a trade popup.
 
 ## Supported consumables
 
@@ -98,6 +98,8 @@ Protected actions require your click and obey combat lockdown.  Locksmith does n
 These are separate, optional projects and are not bundled with Locksmith.
 
 ## Feedback
+
+Feedback and bug reports are welcome through [GitHub Issues](https://github.com/SuttonX/Locksmith/issues).
 
 Include your client language, server, class, profession ranks, bag addon, Locksmith version, exact item or world object, and the steps that produced the issue.  Include any Lua error or game error text.
 
