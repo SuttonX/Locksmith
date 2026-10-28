@@ -16,7 +16,7 @@ Locksmith brings together Rogue Pick Lock, Blacksmithing Skeleton Keys, and Engi
 
 ## Bag lockboxes
 
-Hold **Alt** and left-click or right-click a supported locked item.  Choose **Shift** or **Ctrl** instead under **Interface > AddOns > Locksmith**, or open the settings with `/ls config`.
+Hold **Alt** and left-click or right-click a supported locked item.  Choose **Shift** or **Ctrl** as your modifier instead under **Interface > AddOns > Locksmith**, or open the settings with `/ls config`.
 
 - Rogues use **Pick Lock** when their detected skill meets the lock's requirement.
 - Otherwise, Locksmith selects the **weakest suitable usable key or charge** from carried bags and the Blizzard Keyring.
