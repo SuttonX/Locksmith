@@ -31,7 +31,7 @@ Hold **Alt** and left-click or right-click a supported locked item.  Choose **Sh
 
 **Right-click the object normally first.**  Rogues with sufficient skill can use the game's native world-object lockpicking.  Named dungeon and quest keys also keep their normal behavior.
 
-For Rogues with insufficient skill and non-Rogue Blacksmiths/Engineers, Locksmith opens a compact window containing your **usable Skeleton Keys and Seaforium Charges** when the game reports a recognized locked error.  Select an item, then click the object.  With no usable consumables available, it displays **“No charges or keys available”** instead of opening an empty window.
+For Rogues with insufficient skill or non-Rogue Blacksmiths/Engineers, Locksmith opens a compact window containing your **usable Skeleton Keys and Seaforium Charges** when the game reports a recognized locked error.  Select an item, then click the object.  With no usable consumables available, it displays **“No charges or keys available”** instead of opening an empty window.
 
 World-object skill requirements are not reliably exposed to the addon.  The popup lists available usable consumables; **you choose one strong enough for the lock**.  A special named key may still be required.  Objects or servers that do not send a recognized error may require opening the window manually with `/ls` or the minimap button.
 
