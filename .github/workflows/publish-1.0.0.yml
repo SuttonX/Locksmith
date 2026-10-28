@@ -1,0 +1,58 @@
+name: Publish Locksmith 1.0.0
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-1.0.0.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Build and validate installation ZIP
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile
+          toc = Path('Locksmith.toc').read_text()
+          assert '## Version: 1.0.0' in toc
+          assert '## Interface: 30300' in toc
+          readme = Path('README.md').read_text().replace('assets/Locksmith-Cover.jpg', 'https://raw.githubusercontent.com/SuttonX/Locksmith/main/assets/Locksmith-Cover.jpg')
+          with zipfile.ZipFile('Locksmith.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for filename in ('Locksmith.lua', 'Locksmith.toc'):
+                  archive.write(filename, 'Locksmith/' + filename)
+              archive.writestr('Locksmith/README.md', readme)
+          with zipfile.ZipFile('Locksmith.zip') as archive:
+              assert archive.testzip() is None
+              assert set(archive.namelist()) == {'Locksmith/Locksmith.lua', 'Locksmith/Locksmith.toc', 'Locksmith/README.md'}
+          PY
+      - name: Publish initial release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            echo 'Release v1.0.0 already exists; leaving it unchanged.'
+            exit 0
+          fi
+          cat > release-notes.md <<'NOTES'
+          ## Locksmith 1.0.0
+
+          Unlocking shortcuts for World of Warcraft: Wrath of the Lich King 3.3.5a, Interface 30300.
+
+          - Modifier plus left-click or right-click on bag lockboxes, with Alt, Shift, or Ctrl.
+          - Prefers sufficient Rogue Pick Lock skill, otherwise the weakest suitable usable key or charge.
+          - Compact world-object popup for usable Skeleton Keys and Seaforium Charges.
+          - Rogue-only Pick Lock popup for the other player's trade service slot.
+          - Item quantities, translated tooltips, confirmation before low-skill rogue consumable use, and optional ElvUI styling.
+          - Minimap controls and Blizzard AddOns settings.
+
+          Download **Locksmith.zip** below. Extract the Locksmith folder into Interface/AddOns. Remove the old SmartUnlock folder if present, and keep your Locksmith SavedVariables when updating.
+
+          Move banked lockboxes into your carried bags before using the modifier shortcut. Keys and charges cannot unlock another player's item through the trade service slot.
+
+          See the README for supported bag addons, controller setup, and compatibility notes.
+          NOTES
+          gh release create v1.0.0 Locksmith.zip --target "$GITHUB_SHA" --title 'Locksmith 1.0.0 for WotLK 3.3.5a' --notes-file release-notes.md
