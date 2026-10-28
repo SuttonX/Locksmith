@@ -1,0 +1,7 @@
+## Interface: 30300
+## Title: Locksmith
+## Notes: Lockbox shortcuts and unlocking tools for WoW 3.3.5a.
+## Author: SuttonX / ChatGPT
+## Version: 1.0.0
+## SavedVariables: LocksmithDB
+Locksmith.lua
